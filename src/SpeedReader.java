@@ -22,8 +22,12 @@ public class SpeedReader {
 		WordGenerator text = new WordGenerator(filename);
 
 		while (text.hasNext()) {
+			FontMetrics metrics = g.getFontMetrics();
+			String word = text.next();
+			int hgt = metrics.getHeight();
+			int wdth = metrics.stringWidth(word);
 			g.setColor(Color.black);
-			g.drawString(text.next(), width / 2, height / 2);
+			g.drawString(word, (width/2 - wdth/2), (height/2 - hgt/2));
 			Thread.sleep(60000 / wpm);
 			g.setColor(Color.white);
 			g.fillRect(0, 0, width, height);
