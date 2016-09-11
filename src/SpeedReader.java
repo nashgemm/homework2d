@@ -28,6 +28,21 @@ public class SpeedReader {
 			int wdth = metrics.stringWidth(word);
 			g.setColor(Color.black);
 			g.drawString(word, (width/2 - wdth/2), (height/2 - hgt/2));
+			g.setColor(Color.red);
+			int x = 0;
+			if (word.length() <= 1) {
+				x = 0;
+			} else if (word.length() >= 2 && word.length() <= 5) {
+				x = 1;
+			} else if (word.length() >= 6 && word.length() <= 9) {
+				x = 2;
+			} else if (word.length() >= 10 && word.length() <= 13) {
+				x = 3;
+			} else if (word.length() >= 13) {
+				x = 4;
+			}
+			g.drawString(String.valueOf(word.toCharArray()[x]), 
+					width/2 - wdth/2 + metrics.stringWidth(word.substring(0, x)), height/2 - hgt/2);
 			Thread.sleep(60000 / wpm);
 			g.setColor(Color.white);
 			g.fillRect(0, 0, width, height);
